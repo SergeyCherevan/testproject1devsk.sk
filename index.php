@@ -21,18 +21,36 @@
 
         $statement = $pdo->query('SELECT * FROM books');
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-        
-        foreach ($results as $row) {
-            echo "<br>";
-            
-            echo "Title: " . $row['title'] . "<br>";
-            echo "ISBN: " . $row['isbn'] . "<br>";
-            echo "Price: " . $row['price'] . "<br>";
-            echo "Author: " . $row['author'] . "<br>";
-            echo "Category: " . $row['category'] . "<br>";
-
-            echo "<br>";
-        }
     ?>
+
+    <h2>Formulár pre pridanie knihy do zoznamu:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Názov knihy</th>
+                <th>ISBN</th>
+                <th>Cena</th>
+                <th>Kategória</th>
+                <th>Autor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                foreach ($results as $row) {
+            ?>
+                    <tr>
+                        <td><?=$row['id']?></td>
+                        <td><?=$row['title']?></td>
+                        <td><?=$row['isbn']?></td>
+                        <td><?=$row['price']?></td>
+                        <td><?=$row['category']?></td>
+                        <td><?=$row['author']?></td>
+                    </tr>
+            <?php
+                }
+            ?>
+        </tbody>
+    </table>
 </body>
 </html>
