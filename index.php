@@ -23,7 +23,7 @@
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
-    <h2>Formulár pre pridanie knihy do zoznamu:</h2>
+    <h2>Zoznam kníh:</h2>
     <table>
         <thead>
             <tr>
