@@ -16,10 +16,7 @@
             insertQuery
             );
     }
-    
-    echo "Názov knihy: <b>$title</b></br>";
-    echo "ISBN: <b>$isbn</b></br>";
-    echo "Cena: <b>$price</b></br>";
-    echo "Kategória: <b>$category</b></br>";
-    echo "Autor: <b>$author</b></br>";
+
+    header('Location: /index.php');
+    exit;
 ?>
