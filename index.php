@@ -15,5 +15,24 @@
 
         <input type="submit" value="Pridať do zoznamu">
     </form>
+
+    <?php
+        $pdo = new PDO('sqlite:app_data/testproject1devsk.db');
+
+        $statement = $pdo->query('SELECT * FROM books');
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach ($results as $row) {
+            echo "<br>";
+            
+            echo "Title: " . $row['title'] . "<br>";
+            echo "ISBN: " . $row['isbn'] . "<br>";
+            echo "Price: " . $row['price'] . "<br>";
+            echo "Author: " . $row['author'] . "<br>";
+            echo "Category: " . $row['category'] . "<br>";
+
+            echo "<br>";
+        }
+    ?>
 </body>
 </html>
