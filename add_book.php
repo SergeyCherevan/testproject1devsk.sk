@@ -1,20 +1,19 @@
 <?php
-    $title = $_POST["title"];
-    $isbn = $_POST["isbn"];
-    $price = $_POST["price"];
-    $category = $_POST["category"];
-    $author = $_POST["author"];
+    include_once 'Repositories/BookRepository.php';
 
-    $pdo = new PDO('sqlite:app_data/testproject1devsk.db');
+    $book = new \Models\BookModel(
+        id: 0,
+        title: $_POST["title"],
+        isbn: $_POST["isbn"],
+        price: $_POST["price"],
+        category: $_POST["category"],
+        author: $_POST["author"]
+    );
 
-    if ($title && $isbn && $price && $category && $author) {
-        $statement = $pdo->query(
-            <<< insertQuery
-                INSERT INTO 
-                    books (title, isbn, price, category, author)
-                    VALUES ('$title', '$isbn', '$price', '$category', '$author');
-            insertQuery
-            );
+    $bookRepo = new \Repositories\BookRepository();
+
+    if ($book->isNotEmpty()) {
+        $bookRepo->add($book);
     }
 
     header('Location: /index.php');

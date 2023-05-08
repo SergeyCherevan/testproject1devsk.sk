@@ -14,14 +14,18 @@
     <div class="container">
 
         <?php
-            $pdo = new PDO('sqlite:app_data/testproject1devsk.db');
+            include_once 'Repositories/CategoryRepository.php';
+            include_once 'Repositories/BookRepository.php';
+
+            $categoryRepo = new \Repositories\CategoryRepository();
+            $bookRepo = new \Repositories\BookRepository();
         ?>
 
         </br>
 
         <?php
-            $statement = $pdo->query('SELECT * FROM categories');
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $categories = $categoryRepo->getAll();
+            $books = $bookRepo->getAll();
         ?>
 
         <div class="container">
@@ -57,9 +61,9 @@
                                 <select class="form-select" id="category" name="category" required>
                                     <option value="">Vyberte kategóriu</option>
                                     <?php
-                                        foreach ($results as $row) {
+                                        foreach ($categories as $category) {
                                     ?>
-                                            <option value="<?=$row['name']?>"><?=$row['name']?></option>
+                                            <option value="<?=$category->name?>"><?=$category->name?></option>
                                     <?php
                                         }
                                     ?>
@@ -86,11 +90,6 @@
             </div>
         </div>
 
-        <?php
-            $statement = $pdo->query('SELECT * FROM books');
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-
         </br>
 
         <h2 class="text-center">Zoznam kníh:</h2>
@@ -107,15 +106,15 @@
             </thead>
             <tbody>
                 <?php
-                    foreach ($results as $row) {
+                    foreach ($books as $book) {
                 ?>
                         <tr>
-                            <td><?=$row['id']?></td>
-                            <td><?=$row['title']?></td>
-                            <td><?=$row['isbn']?></td>
-                            <td><?=$row['price']?></td>
-                            <td><?=$row['category']?></td>
-                            <td><?=$row['author']?></td>
+                            <td><?=$book->id?></td>
+                            <td><?=$book->title?></td>
+                            <td><?=$book->isbn?></td>
+                            <td><?=$book->price?></td>
+                            <td><?=$book->category?></td>
+                            <td><?=$book->author?></td>
                         </tr>
                 <?php
                     }
@@ -128,6 +127,8 @@
                 <button class="btn btn-primary">Získajte údaje o knihách vo formáte JSON</button>
             </a>
         </div>
+
+        </br>
 
     </div>
 

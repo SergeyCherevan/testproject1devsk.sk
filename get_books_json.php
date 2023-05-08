@@ -1,8 +1,9 @@
 <?php
-    $pdo = new PDO('sqlite:app_data/testproject1devsk.db');
+    include_once 'Repositories/BookRepository.php';
 
-    $statement = $pdo->query('SELECT * FROM books');
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $bookRepo = new \Repositories\BookRepository();
+
+    $results = $bookRepo->getAll();
 
     $json_data = json_encode($results);
     header('Content-Type: application/json');
