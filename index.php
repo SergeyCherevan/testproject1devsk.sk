@@ -105,6 +105,13 @@
                 ?>
             </tbody>
         </table>
+
+        <div class="text-center">
+            <a href="get_books_json.php">
+                <button class="btn btn-primary">Získajte údaje o knihách vo formáte JSON</button>
+            </a>
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
