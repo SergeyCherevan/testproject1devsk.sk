@@ -9,7 +9,8 @@
     <form action="add_book.php" method="POST">
         <p>Názov knihy: <input type="text" name="title" /></p>
         <p>ISBN: <input type="text" name="isbn" /></p>
-        <p>Cena: <input type="number" name="price" /></p>
+        <p>Cena: <input type="number" name="price" step="0.01" /></p>
+        <p>Kategória: <input type="text" name="category" /></p>
         <p>Autor: <input type="text" name="author" /></p>
 
         <input type="submit" value="Pridať do zoznamu">
