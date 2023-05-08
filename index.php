@@ -13,7 +13,16 @@
 <body>
     <div class="container">
 
+        <?php
+            $pdo = new PDO('sqlite:app_data/testproject1devsk.db');
+        ?>
+
         </br>
+
+        <?php
+            $statement = $pdo->query('SELECT * FROM categories');
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        ?>
 
         <div class="container">
             <div class="row justify-content-center">
@@ -45,9 +54,19 @@
                         <div class="row mb-3">
                             <label for="category" class="col-sm-2 col-form-label">Kategória:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="category" name="category">
+                                <select class="form-select" id="category" name="category" required>
+                                    <option value="">Vyberte kategóriu</option>
+                                    <?php
+                                        foreach ($results as $row) {
+                                    ?>
+                                            <option value="<?=$row['name']?>"><?=$row['name']?></option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
                             </div>
                         </div>
+
 
                         <div class="row mb-3">
                             <label for="author" class="col-sm-2 col-form-label">Autor:</label>
@@ -68,8 +87,6 @@
         </div>
 
         <?php
-            $pdo = new PDO('sqlite:app_data/testproject1devsk.db');
-
             $statement = $pdo->query('SELECT * FROM books');
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
         ?>
