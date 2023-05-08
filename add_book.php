@@ -7,13 +7,15 @@
 
     $pdo = new PDO('sqlite:app_data/testproject1devsk.db');
 
-    $statement = $pdo->query(
-    <<< insertQuery
-        INSERT INTO 
-            books (title, isbn, price, category, author)
-            VALUES ('$title', '$isbn', '$price', '$category', '$author');
-    insertQuery
-    );
+    if ($title && $isbn && $price && $category && $author) {
+        $statement = $pdo->query(
+            <<< insertQuery
+                INSERT INTO 
+                    books (title, isbn, price, category, author)
+                    VALUES ('$title', '$isbn', '$price', '$category', '$author');
+            insertQuery
+            );
+    }
     
     echo "Názov knihy: <b>$title</b></br>";
     echo "ISBN: <b>$isbn</b></br>";
