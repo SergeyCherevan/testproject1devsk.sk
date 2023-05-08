@@ -33,7 +33,7 @@
             $bookArray = [];
 
             foreach ($results as $row) {
-                $bookArray[] = new \Models\BookModel($row);
+                $bookArray[] = \Models\BookModel::__createByRow($row);
             }
 
             return $bookArray;

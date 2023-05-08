@@ -34,7 +34,7 @@
             'price' => 0.0,
             'category' => 'Beletria',
             'author' => '',
-        ])
+        ]) : object
         {
             $book = new BookModel();
 
@@ -44,6 +44,8 @@
             $book->price = $row['price'];
             $book->category = $row['category'];
             $book->author = $row['author'];
+
+            return $book;
         }
 
         function isNotEmpty() : bool
